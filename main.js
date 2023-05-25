@@ -85,4 +85,24 @@ const jupiter = new THREE.Mesh(
 
 scene.add(jupiter)
 
+jupiter.position.z = 30;
+jupiter.position.setX(-10);
+
+
+function moveCamera() {
+
+  const t = document.body.getBoundingClientRect().top;
+  jupiter.rotation.x += 0.05;
+  jupiter.rotation.y += 0.075;
+  jupiter.rotation.z += 0.05;
+
+  gordon.rotation.y += 0.01;  
+  gordon.rotation.z += 0.01;  
+
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.position.y = t * -0.0002;
+}
+
+document.body.onscroll = moveCamera
 animate();
