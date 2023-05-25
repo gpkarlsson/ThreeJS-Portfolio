@@ -49,6 +49,9 @@ function addStar() {
 
 Array(200).fill().forEach(addStar)
 
+const spaceTexture = new THREE.TextureLoader().load('space.jpg')
+scene.background = spaceTexture;
+
 function animate() {
   requestAnimationFrame( animate );
   torus.rotation.x += 0.01;
@@ -59,5 +62,27 @@ function animate() {
 
   renderer.render( scene, camera );
 }
+
+const gordonTexture = new THREE.TextureLoader().load('gordon.png')
+
+const gordon = new THREE.Mesh(
+  new THREE.BoxGeometry(3,3,3),
+  new THREE.MeshBasicMaterial({ map: gordonTexture })
+)
+
+scene.add(gordon)
+
+const jupiterTexture = new THREE.TextureLoader().load('jupiter.jpg');
+const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+
+const jupiter = new THREE.Mesh(
+  new THREE.SphereGeometry(3,32,32),
+  new THREE.MeshStandardMaterial({
+    map: jupiterTexture,
+    normalMap: normalTexture
+  })
+)
+
+scene.add(jupiter)
 
 animate();
